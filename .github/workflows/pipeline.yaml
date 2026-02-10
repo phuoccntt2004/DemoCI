@@ -1,0 +1,28 @@
+name: CI pipeline
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Build with maven
+      run: mvn clean package -DskipTests
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_TOKEN }}
+    - name: Build & Push Docker Image
+      run: |
+        COMMIT_ID=$(git rev-parse --short HEAD)
+        docker build -t tienphuoc/javaappdemo:$COMMIT_ID .
+        docker push tienphuoc/javaapp:$COMMIT_ID
+
+#hdsa
