@@ -23,6 +23,6 @@ jobs:
       run: |
         COMMIT_ID=$(git rev-parse --short HEAD)
         docker build -t tienphuoc/javaappdemo:$COMMIT_ID .
-        docker push tienphuoc/javaapp:$COMMIT_ID
+        docker push tienphuoc/javaappdemo:$COMMIT_ID
 
 #hdsa
