@@ -25,4 +25,4 @@ jobs:
         docker build -t tienphuoc/javaappdemo:$COMMIT_ID .
         docker push tienphuoc/javaappdemo:$COMMIT_ID
 
-
+#ffsdfsd
